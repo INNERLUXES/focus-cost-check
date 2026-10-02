@@ -1,0 +1,11 @@
+# Every change is reviewed by a maintainer.
+* @innerluxesdev
+
+# The sentences come from the FOCUS specification and the documentation of the clouds, and the CSV reader, the exact decimals, the analysis and the checks decide every line of the report; changes need extra care.
+/src/data.js @innerluxesdev
+/research/ @innerluxesdev
+/src/csv.js @innerluxesdev
+/src/decimal.js @innerluxesdev
+/src/files.js @innerluxesdev
+/src/analyze.js @innerluxesdev
+/src/check.js @innerluxesdev
