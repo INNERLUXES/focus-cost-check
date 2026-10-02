@@ -1,0 +1,364 @@
+{
+  "tool": "focus-cost-check",
+  "version": "1.0.0",
+  "target": "export.csv",
+  "input": {
+    "file": "export.csv",
+    "rows": 26,
+    "columns": 28,
+    "layout": {
+      "id": "1.2",
+      "label": "FOCUS 1.0 to 1.2 columns",
+      "savedVersion": "1.2"
+    },
+    "currency": "USD",
+    "currencies": [
+      {
+        "code": "USD",
+        "rows": 26
+      }
+    ],
+    "firstChargeStart": "2100-01-01T00:00:00Z",
+    "lastChargeStart": "2100-02-01T00:00:00Z",
+    "periods": [
+      {
+        "period": "2100-01",
+        "days": 1
+      },
+      {
+        "period": "2100-02",
+        "days": 1
+      }
+    ],
+    "usage": {
+      "rows": 18,
+      "effective": "5353.05"
+    },
+    "invalidRows": 0,
+    "tagKeys": 2
+  },
+  "options": {
+    "failOn": "warning",
+    "requireTags": [
+      "env"
+    ],
+    "untaggedMax": "20",
+    "spikePercent": "50",
+    "spikeMin": "100",
+    "groupBy": "service",
+    "currency": null
+  },
+  "findings": [
+    {
+      "id": "untagged-cost",
+      "severity": "warning",
+      "subject": "Tags",
+      "message": "22.5 percent of the usage cost (1163.45 USD of 5163.05 USD effective cost) has no tags at all, above the limit of 20 percent.",
+      "fix": "Tag the resources that carry the cost below, or set tags on the account or project so they reach the charges; then export again.",
+      "value": "22.5",
+      "limit": "20",
+      "lines": [
+        "service Amazon EC2: 849.00 USD (73.0 percent)",
+        "service Amazon S3: 179.50 USD (15.4 percent)",
+        "service Amazon CloudWatch: 134.95 USD (11.6 percent)",
+        "resource arn:aws:ec2:us-e...nce/i-0batch9f8e7d6c5b4a: 849.00 USD (73.0 percent)",
+        "resource arn:aws:s3:::acme-shop-access-logs: 179.50 USD (15.4 percent)",
+        "resource arn:aws:logs:us-...333:log-group:/acme/shop: 134.95 USD (11.6 percent)"
+      ],
+      "details": {
+        "untagged": "1163.45",
+        "base": "5163.05",
+        "rows": 6
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column Tags",
+          "section": "Description",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/tags.md",
+          "quote": "Tags are commonly used for scenarios like adding business context to cost and usage data to identify and accurately allocate charges."
+        },
+        {
+          "page": "FOCUS 1.2, column EffectiveCost",
+          "section": "Description",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/effectivecost.md",
+          "quote": "Practitioners need to amortize relevant purchases, such as upfront fees, throughout the commitment and distribute them to the appropriate reporting groups (e.g., tags, resources)."
+        },
+        {
+          "page": "FOCUS 1.2, column Tags",
+          "section": "Requirements",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/tags.md",
+          "quote": "Tags MAY be null."
+        }
+      ]
+    },
+    {
+      "id": "tag-key-missing",
+      "severity": "warning",
+      "subject": "env",
+      "message": "28.6 percent of the usage cost (1477.55 USD of 5163.05 USD effective cost) has no value for the tag key \"env\", above the limit of 20 percent. A key with no value counts as missing.",
+      "fix": "Set the tag key \"env\" on the resources below.",
+      "value": "28.6",
+      "limit": "20",
+      "lines": [
+        "service Amazon EC2: 849.00 USD (57.5 percent)",
+        "service Amazon S3: 493.60 USD (33.4 percent)",
+        "service Amazon CloudWatch: 134.95 USD (9.1 percent)",
+        "resource arn:aws:ec2:us-e...nce/i-0batch9f8e7d6c5b4a: 849.00 USD (57.5 percent)",
+        "resource arn:aws:s3:::acme-shop-assets: 314.10 USD (21.3 percent)",
+        "resource arn:aws:s3:::acme-shop-access-logs: 179.50 USD (12.1 percent)",
+        "resource arn:aws:logs:us-...333:log-group:/acme/shop: 134.95 USD (9.1 percent)"
+      ],
+      "details": {
+        "key": "env",
+        "missing": "1477.55",
+        "base": "5163.05",
+        "rows": 8
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column Tags",
+          "section": "Description",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/tags.md",
+          "quote": "Tags are commonly used for scenarios like adding business context to cost and usage data to identify and accurately allocate charges."
+        },
+        {
+          "page": "FOCUS 1.2, column Tags",
+          "section": "Requirements",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/tags.md",
+          "quote": "Tags MAY include tag keys with a null value for a given resource depending on the provider's tag finalization process."
+        }
+      ]
+    },
+    {
+      "id": "cost-spike",
+      "severity": "warning",
+      "subject": "AWS Lambda",
+      "message": "AWS Lambda: effective cost went from 120.00 USD in 2100-01 to 480.00 USD in 2100-02, a rise of 360.00 USD (300.0 percent, above the limit of 50 percent).",
+      "fix": "Open the charges of this service in the later period and find the resource or the change that caused the rise.",
+      "value": "300.0",
+      "limit": "50",
+      "lines": [],
+      "details": {
+        "group": "service",
+        "from": "2100-01",
+        "to": "2100-02",
+        "before": "120.00",
+        "now": "480.00",
+        "rise": "360.00",
+        "daysFrom": 1,
+        "daysTo": 1
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column EffectiveCost",
+          "section": "Description",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/effectivecost.md",
+          "quote": "The Effective Cost is commonly utilized to track and analyze spending trends."
+        },
+        {
+          "page": "FOCUS 1.2, column ServiceName",
+          "section": "Description",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/servicename.md",
+          "quote": "The Service Name is commonly used for scenarios like analyzing aggregate cost trends over time and filtering data to investigate anomalies."
+        },
+        {
+          "page": "FOCUS 1.2, column ChargePeriodStart",
+          "section": "Requirements",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/chargeperiodstart.md",
+          "quote": "ChargePeriodStart MUST be the inclusive start bound of the effective period of the charge."
+        }
+      ]
+    },
+    {
+      "id": "no-owner-account",
+      "severity": "info",
+      "subject": "SubAccountId and SubAccountName",
+      "message": "2 usage rows (134.95 USD, 2.5 percent of the usage cost) have no SubAccountId and no SubAccountName. The specification says the ID is null when a charge is not related to a sub account, so this can be correct.",
+      "fix": "Nothing to fix if these charges belong to the billing account itself; otherwise map them to an account.",
+      "value": "2.5",
+      "limit": "",
+      "lines": [
+        "service Amazon CloudWatch: 134.95 USD (100.0 percent)"
+      ],
+      "details": {
+        "rows": 2,
+        "amount": "134.95"
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column SubAccountId",
+          "section": "Description",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/subaccountid.md",
+          "quote": "Sub Account ID is commonly used for scenarios like grouping based on organizational constructs, access management needs, and cost allocation strategies."
+        },
+        {
+          "page": "FOCUS 1.2, column SubAccountId",
+          "section": "Requirements",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/subaccountid.md",
+          "quote": "SubAccountId MUST be null when a charge is not related to a sub account."
+        }
+      ]
+    },
+    {
+      "id": "commitment-coverage",
+      "severity": "info",
+      "subject": "CommitmentDiscountId",
+      "message": "Commitment discounts cover 35.0 percent of the consumed usage cost: 1805.50 USD with status Used and 3357.55 USD with no CommitmentDiscountId. The unused part of commitments is 190.00 USD (2 rows). This is a number from the file, not a judgement.",
+      "fix": "Nothing to fix; read it with the commitments you hold.",
+      "value": "35.0",
+      "limit": "",
+      "lines": [],
+      "details": {
+        "used": "1805.50",
+        "none": "3357.55",
+        "unused": "190.00",
+        "other": "0.00",
+        "usedRows": 2,
+        "noneRows": 14,
+        "unusedRows": 2,
+        "otherRows": 0
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column CommitmentDiscountStatus",
+          "section": "Description",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/commitmentdiscountstatus.md",
+          "quote": "Commitment Discount Status indicates whether the charge corresponds with the consumption of a commitment discount identified in the CommitmentDiscountId column or the unused portion of the committed amount."
+        },
+        {
+          "page": "FOCUS 1.2, column CommitmentDiscountStatus",
+          "section": "Allowed values, Used",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/commitmentdiscountstatus.md",
+          "quote": "Charges that utilized a specific amount of a commitment discount."
+        },
+        {
+          "page": "FOCUS 1.2, column CommitmentDiscountStatus",
+          "section": "Allowed values, Unused",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/commitmentdiscountstatus.md",
+          "quote": "Charges that represent the unused portion of the commitment discount."
+        }
+      ]
+    },
+    {
+      "id": "charge-category-total",
+      "severity": "info",
+      "subject": "Purchase",
+      "message": "Purchase: 2 rows, BilledCost 1800.00 USD, EffectiveCost 0.00 USD. These rows are not in the usage cost that the other checks use.",
+      "fix": "Nothing to fix; this explains the difference between the usage cost and the invoice total.",
+      "value": "",
+      "limit": "",
+      "lines": [],
+      "details": {
+        "category": "Purchase",
+        "rows": 2,
+        "billed": "1800.00",
+        "effective": "0.00"
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column ChargeCategory",
+          "section": "Allowed values, Purchase",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/chargecategory.md",
+          "quote": "Positive or negative charges for the acquisition of a service or resource bought upfront or on a recurring basis including refunds."
+        },
+        {
+          "page": "FOCUS 1.2, column EffectiveCost",
+          "section": "Requirements",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/effectivecost.md",
+          "quote": "EffectiveCost MUST be 0 when ChargeCategory is \"Purchase\" and the purchase is intended to cover future eligible charges."
+        }
+      ]
+    },
+    {
+      "id": "charge-category-total",
+      "severity": "info",
+      "subject": "Tax",
+      "message": "Tax: 2 rows, BilledCost 363.20 USD, EffectiveCost 363.20 USD. These rows are not in the usage cost that the other checks use.",
+      "fix": "Nothing to fix; this explains the difference between the usage cost and the invoice total.",
+      "value": "",
+      "limit": "",
+      "lines": [],
+      "details": {
+        "category": "Tax",
+        "rows": 2,
+        "billed": "363.20",
+        "effective": "363.20"
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column ChargeCategory",
+          "section": "Allowed values, Tax",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/chargecategory.md",
+          "quote": "Positive or negative applicable taxes that are levied by the relevant authorities including refunds."
+        }
+      ]
+    },
+    {
+      "id": "charge-category-total",
+      "severity": "info",
+      "subject": "Credit",
+      "message": "Credit: 2 rows, BilledCost -350.00 USD, EffectiveCost -350.00 USD. These rows are not in the usage cost that the other checks use.",
+      "fix": "Nothing to fix; this explains the difference between the usage cost and the invoice total.",
+      "value": "",
+      "limit": "",
+      "lines": [],
+      "details": {
+        "category": "Credit",
+        "rows": 2,
+        "billed": "-350.00",
+        "effective": "-350.00"
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column ChargeCategory",
+          "section": "Allowed values, Credit",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/chargecategory.md",
+          "quote": "Positive or negative charges granted by the provider for various scenarios e.g promotional credits or corrections to promotional credits."
+        },
+        {
+          "page": "FOCUS 1.2, column EffectiveCost",
+          "section": "Requirements",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/effectivecost.md",
+          "quote": "EffectiveCost of a charge unrelated to other charges (e.g., when the ChargeCategory is \"Credit\") MUST match the BilledCost."
+        }
+      ]
+    },
+    {
+      "id": "charge-category-total",
+      "severity": "info",
+      "subject": "Adjustment",
+      "message": "Adjustment: 2 rows, BilledCost 80.00 USD, EffectiveCost 80.00 USD. These rows are not in the usage cost that the other checks use.",
+      "fix": "Nothing to fix; this explains the difference between the usage cost and the invoice total.",
+      "value": "",
+      "limit": "",
+      "lines": [],
+      "details": {
+        "category": "Adjustment",
+        "rows": 2,
+        "billed": "80.00",
+        "effective": "80.00"
+      },
+      "manual": [
+        {
+          "page": "FOCUS 1.2, column ChargeCategory",
+          "section": "Allowed values, Adjustment",
+          "url": "https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/chargecategory.md",
+          "quote": "Positive or negative charges the provider applies that do not fall into other category values."
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "2 usage rows (190.00 USD) with the status Unused are left out of the tag checks: the unused part of a commitment has no resource to tag."
+  ],
+  "counts": {
+    "error": 0,
+    "warning": 3,
+    "info": 6
+  },
+  "gate": {
+    "pass": false,
+    "failOn": "warning",
+    "reason": "3 warnings"
+  }
+}
