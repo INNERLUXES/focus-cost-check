@@ -1,0 +1,44 @@
+Source: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/consumedquantity.md
+
+# Consumed Quantity
+
+The Consumed Quantity represents the volume of a metered SKU associated with a resource or service used, based on the Consumed Unit. Consumed Quantity is often derived at a finer granularity or over a different time interval when compared to the Pricing Quantity (complementary to Pricing Unit) and focuses on resource and service consumption, not pricing and cost.
+
+The ConsumedQuantity column adheres to the following requirements:
+
+- ConsumedQuantity MUST be present in a FOCUS dataset when the provider supports the measurement of usage.
+- ConsumedQuantity MUST be of type Decimal.
+- ConsumedQuantity MUST conform to NumericFormat requirements.
+- ConsumedQuantity nullability is defined as follows:
+  - ConsumedQuantity MUST be null when ChargeCategory is not "Usage", or when ChargeCategory is "Usage" and CommitmentDiscountStatus is "Unused".
+  - When ChargeCategory is "Usage" and CommitmentDiscountStatus is not "Unused", ConsumedQuantity adheres to the following additional requirements:
+    - ConsumedQuantity MUST NOT be null when ChargeClass is not "Correction".
+    - ConsumedQuantity MAY be null when ChargeClass is "Correction".
+- ConsumedQuantity MUST be a valid decimal value when not null.
+
+## Column ID
+
+ConsumedQuantity
+
+## Display Name
+
+Consumed Quantity
+
+## Description
+
+The volume of a metered SKU associated with a resource or service used, based on the Consumed Unit.
+
+## Content constraints
+
+| Constraint      | Value         |
+|:----------------|:--------------|
+| Column type     | Metric        |
+| Feature level   | Conditional   |
+| Allows nulls    | True          |
+| Data type       | Decimal       |
+| Value format    | Numeric Format |
+| Number range    | Any valid decimal value |
+
+## Introduced (version)
+
+1.0

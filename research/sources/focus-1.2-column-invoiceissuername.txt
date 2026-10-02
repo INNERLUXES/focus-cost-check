@@ -1,0 +1,41 @@
+Source: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/invoiceissuer.md
+
+# Invoice Issuer
+
+An Invoice Issuer is an entity responsible for issuing payable invoices for the resources or services consumed. It is commonly used for cost analysis and reporting scenarios.
+
+The InvoiceIssuerName column adheres to the following requirements:
+
+- InvoiceIssuerName MUST be present in a FOCUS dataset.
+- InvoiceIssuerName MUST be of type String.
+- InvoiceIssuerName MUST conform to StringHandling requirements.
+- InvoiceIssuerName MUST NOT be null.
+
+See Appendix: Origination of cost data section for examples of Provider, Publisher and
+Invoice Issuer values that can be used for various purchasing scenarios.
+
+## Column ID
+
+InvoiceIssuerName
+
+## Display Name
+
+Invoice Issuer
+
+## Description
+
+The name of the entity responsible for invoicing for the resources or services consumed.
+
+## Content Constraints
+
+| Constraint      | Value           |
+|:----------------|:----------------|
+| Column type     | Dimension       |
+| Feature level   | Mandatory       |
+| Allows nulls    | False           |
+| Data type       | String          |
+| Value format    | \<not specified> |
+
+## Introduced (version)
+
+0.5

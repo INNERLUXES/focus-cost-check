@@ -1,0 +1,42 @@
+Source: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.4/specification/datasets/cost_and_usage/columns/regionname.md
+
+# Region Name
+
+Region Name is a host-provider-assigned display name for an isolated geographic area where a resource is provisioned or a service is provided. Region Name is commonly used for scenarios like analyzing cost and unit prices based on where resources are deployed.
+
+## Requirements
+
+RegionName MUST adhere to the following requirements:
+
+- RegionName MUST be of type String.
+- RegionName MUST conform to StringHandling requirements.
+- RegionName MUST adhere to the following nullability requirements:
+  - RegionName MUST be null when RegionId is null.
+  - RegionName MUST NOT be null when RegionId is not null.
+
+## Column ID
+
+RegionName
+
+## Display Name
+
+Region Name
+
+## Description
+
+The name of an isolated geographic area where a resource is provisioned or a service is provided.
+
+## Content Constraints
+
+| Constraint      | Value                                                |
+| :-------------- | :--------------------------------------------------- |
+| Dataset         | Cost and Usage             |
+| Column type     | Dimension                                            |
+| Feature level   | Conditional                                          |
+| Allows nulls    | True                                                 |
+| Data type       | String                                               |
+| Value format    | \<not specified>                                     |
+
+## Version Introduced
+
+1.0

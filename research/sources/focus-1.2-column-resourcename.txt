@@ -1,0 +1,41 @@
+Source: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/resourcename.md
+
+# Resource Name
+
+The Resource Name is a display name assigned to a resource. It is commonly used for cost analysis, reporting, and allocation scenarios.
+
+The ResourceName column adheres to the following requirements:
+
+- ResourceName MUST be present in a FOCUS dataset when the provider supports billing based on provisioned resources.
+- ResourceName MUST be of type String.
+- ResourceName MUST conform to StringHandling requirements.
+- ResourceName nullability is defined as follows:
+  - ResourceName MUST be null when ResourceId is null or when the resource does not have an assigned display name.
+  - ResourceName MUST NOT be null when ResourceId is not null and the resource has an assigned display name.
+- ResourceName MUST NOT duplicate ResourceId when the resource is not provisioned interactively or only has a system-generated ResourceId.
+
+## Column ID
+
+ResourceName
+
+## Display Name
+
+Resource Name
+
+## Description
+
+Display name assigned to a resource.
+
+## Content Constraints
+
+|    Constraint   |      Value      |
+|:----------------|:----------------|
+| Column type     | Dimension       |
+| Feature level   | Conditional     |
+| Allows nulls    | True            |
+| Data type       | String          |
+| Value format    | \<not specified> |
+
+## Introduced (version)
+
+0.5

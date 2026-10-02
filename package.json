@@ -1,0 +1,50 @@
+{
+  "name": "focus-cost-check",
+  "version": "1.0.0",
+  "description": "Read a cloud cost and usage export in the FinOps Open Cost and Usage Specification (FOCUS) format, as CSV, and report what makes cloud spend hard to own or control: cost with no tags or without a required tag key, cost with no account owner, a rise in a service from one charge period to the next, the share covered by commitment discounts, and the credits, adjustments and taxes that explain the totals. Money is added as exact decimals and never across currencies. Each finding quotes the FOCUS specification. Reads one file only, never calls a cloud, no dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "focus-cost-check": "bin/focus-cost-check.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "examples",
+    "research",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "test:coverage": "node --test --experimental-test-coverage \"test/*.test.js\"",
+    "check": "node tools/check.mjs",
+    "example": "node tools/example.mjs"
+  },
+  "keywords": [
+    "finops",
+    "focus",
+    "cloud-cost",
+    "cost-allocation",
+    "tags",
+    "aws",
+    "azure",
+    "gcp",
+    "csv",
+    "cli"
+  ],
+  "author": "INNERLUXES <info@innerluxes.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/INNERLUXES/focus-cost-check.git"
+  },
+  "homepage": "https://innerluxes.dev/software-development/cloud-computing-solutions"
+}

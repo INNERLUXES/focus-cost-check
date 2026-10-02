@@ -1,0 +1,44 @@
+Source: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.4/specification/datasets/cost_and_usage/columns/subaccountid.md
+
+# Sub Account ID
+
+A Sub Account ID is a service-provider-assigned identifier assigned to a sub account. Sub Account ID is commonly used for scenarios like grouping based on organizational constructs, access management needs, and cost allocation strategies.
+
+## Requirements
+
+SubAccountId MUST adhere to the following requirements:
+
+- SubAccountId MUST be of type String.
+- SubAccountId MUST conform to StringHandling requirements.
+- SubAccountId MUST adhere to the following nullability requirements:
+  - SubAccountId MUST be null when a charge is not related to a sub account.
+  - SubAccountId MUST NOT be null when a charge is related to a sub account.
+
+See Appendix: Grouping constructs for resources or services for details and examples of the different grouping constructs supported by FOCUS.
+
+## Column ID
+
+SubAccountId
+
+## Display Name
+
+Sub Account ID
+
+## Description
+
+An ID assigned to a grouping of resources or services, often used to manage access and/or cost.
+
+## Content Constraints
+
+| Constraint      | Value                                                |
+| :-------------- | :--------------------------------------------------- |
+| Dataset         | Cost and Usage             |
+| Column type     | Dimension                                            |
+| Feature level   | Conditional                                          |
+| Allows nulls    | True                                                 |
+| Data type       | String                                               |
+| Value format    | \<not specified>                                     |
+
+## Version Introduced
+
+0.5

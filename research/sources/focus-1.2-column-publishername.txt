@@ -1,0 +1,41 @@
+Source: https://github.com/FinOps-Open-Cost-and-Usage-Spec/FOCUS_Spec/blob/v1.2/specification/columns/publisher.md
+
+# Publisher
+
+A Publisher is an entity that produces the resources or services that were purchased. It is commonly used for cost analysis and reporting scenarios.
+
+The PublisherName column adheres to the following requirements:
+
+- PublisherName MUST be present in a FOCUS dataset.
+- PublisherName MUST be of type String.
+- PublisherName MUST conform to StringHandling requirements.
+- PublisherName MUST NOT be null.
+
+See Appendix: Origination of cost data section for examples of Provider, Publisher and
+Invoice Issuer values that can be used for various purchasing scenarios.
+
+## Column ID
+
+PublisherName
+
+## Display Name
+
+Publisher
+
+## Description
+
+The name of the entity that produced the resources or services that were purchased.
+
+## Content Constraints
+
+| Constraint      | Value           |
+|:----------------|:----------------|
+| Column type     | Dimension       |
+| Feature level   | Mandatory       |
+| Allows nulls    | False           |
+| Data type       | String          |
+| Value format    | \<not specified> |
+
+## Introduced (version)
+
+0.5
